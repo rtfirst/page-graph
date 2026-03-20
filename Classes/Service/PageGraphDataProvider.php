@@ -225,7 +225,7 @@ class PageGraphDataProvider
         $result = [];
 
         foreach ($byTable as $tableName => $tableRefs) {
-            $recUids = array_unique(array_map(fn(array $r): int => (int) $r['recuid'], $tableRefs));
+            $recUids = array_values(array_unique(array_map(fn(array $r): int => (int) $r['recuid'], $tableRefs)));
 
             // Resolve pid for each record in this table
             $pidMap = $this->resolveSourcePages($tableName, $recUids);
