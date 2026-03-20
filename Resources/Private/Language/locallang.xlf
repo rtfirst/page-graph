@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:rt_page_graph/Resources/Private/Language/locallang.xlf">
+        <body>
+            <trans-unit id="widget.title" resname="widget.title">
+                <source>Page Graph</source>
+            </trans-unit>
+            <trans-unit id="widget.description" resname="widget.description">
+                <source>Interactive force-directed graph visualization of the page tree and content elements.</source>
+            </trans-unit>
+            <trans-unit id="toolbar.search" resname="toolbar.search">
+                <source>Search nodes...</source>
+            </trans-unit>
+            <trans-unit id="toolbar.contentElements" resname="toolbar.contentElements">
+                <source>Content Elements</source>
+            </trans-unit>
+            <trans-unit id="toolbar.references" resname="toolbar.references">
+                <source>Internal Links</source>
+            </trans-unit>
+            <trans-unit id="toolbar.resetView" resname="toolbar.resetView">
+                <source>Reset view</source>
+            </trans-unit>
+            <trans-unit id="toolbar.fullscreen" resname="toolbar.fullscreen">
+                <source>Fullscreen</source>
+            </trans-unit>
+            <trans-unit id="panel.editRecord" resname="panel.editRecord">
+                <source>Edit record</source>
+            </trans-unit>
+            <trans-unit id="panel.close" resname="panel.close">
+                <source>Close</source>
+            </trans-unit>
+            <trans-unit id="panel.connected" resname="panel.connected">
+                <source>Connected:</source>
+            </trans-unit>
+            <trans-unit id="label.id" resname="label.id">
+                <source>ID</source>
+            </trans-unit>
+            <trans-unit id="label.type" resname="label.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="label.group" resname="label.group">
+                <source>Group</source>
+            </trans-unit>
+            <trans-unit id="label.hidden" resname="label.hidden">
+                <source>Hidden</source>
+            </trans-unit>
+            <trans-unit id="label.page" resname="label.page">
+                <source>page</source>
+            </trans-unit>
+            <trans-unit id="label.content" resname="label.content">
+                <source>content</source>
+            </trans-unit>
+            <trans-unit id="stats.pages" resname="stats.pages">
+                <source>Pages</source>
+            </trans-unit>
+            <trans-unit id="stats.contentElements" resname="stats.contentElements">
+                <source>Content Elements</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

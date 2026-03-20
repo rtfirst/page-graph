@@ -1,0 +1,24 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  RTfirst\PageGraph\:
+    resource: '../Classes/*'
+
+  dashboard.widget.pageGraph:
+    class: RTfirst\PageGraph\Widgets\PageGraphWidget
+    arguments:
+      $options:
+        includeContent: false
+        refreshAvailable: true
+    tags:
+      - name: dashboard.widget
+        identifier: 'pageGraphWidget'
+        groupNames: 'content'
+        title: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:widget.title'
+        description: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:widget.description'
+        iconIdentifier: 'content-widget-chart'
+        height: 'large'
+        width: 'large'

@@ -1,0 +1,37 @@
+{
+    "name": "rtfirst/page-graph",
+    "type": "typo3-cms-extension",
+    "description": "Dashboard widget showing the TYPO3 page tree and content elements as an interactive force-directed graph visualization.",
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "TYPO3",
+        "extension",
+        "dashboard",
+        "widget",
+        "page tree",
+        "graph",
+        "visualization"
+    ],
+    "authors": [
+        {
+            "name": "Roland Tfirst",
+            "email": "roland@tfirst.de"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "typo3/cms-core": "^12.4 || ^13.0 || ^14.0",
+        "typo3/cms-backend": "^12.4 || ^13.0 || ^14.0",
+        "typo3/cms-dashboard": "^12.4 || ^13.0 || ^14.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "RTfirst\\PageGraph\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "rt_page_graph"
+        }
+    }
+}

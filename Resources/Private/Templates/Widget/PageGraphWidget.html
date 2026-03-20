@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="page-graph-widget"
+     data-label-id="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:label.id')}"
+     data-label-type="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:label.type')}"
+     data-label-group="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:label.group')}"
+     data-label-hidden="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:label.hidden')}"
+     data-label-page="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:label.page')}"
+     data-label-content="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:label.content')}"
+     data-label-pages="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:stats.pages')}"
+     data-label-content-elements="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:stats.contentElements')}"
+     data-label-connected="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:panel.connected')}">
+    <div class="page-graph-toolbar">
+        <button type="button" class="page-graph-reset-view btn btn-default btn-sm"
+                title="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:toolbar.resetView')}">&#8962;</button>
+        <input type="text" class="page-graph-search form-control form-control-sm"
+               placeholder="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:toolbar.search')}" />
+        <div class="page-graph-toolbar-right">
+            <label class="page-graph-toggle">
+                <input type="checkbox" class="page-graph-toggle-content" />
+                <span><f:translate key="LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:toolbar.contentElements" /></span>
+            </label>
+            <label class="page-graph-toggle">
+                <input type="checkbox" class="page-graph-toggle-references" />
+                <span><f:translate key="LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:toolbar.references" /></span>
+            </label>
+            <button type="button" class="page-graph-fullscreen btn btn-default btn-sm"
+                    title="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:toolbar.fullscreen')}">&#x26F6;</button>
+        </div>
+    </div>
+    <div class="page-graph-container"></div>
+    <div class="page-graph-info-panel" style="display:none;">
+        <div class="page-graph-info-header">
+            <span class="page-graph-info-title"></span>
+            <span class="page-graph-info-actions">
+                <a class="page-graph-info-edit" href="#"
+                   title="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:panel.editRecord')}">&#9998;</a>
+                <button class="page-graph-info-close" type="button"
+                        title="{f:translate(key: 'LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:panel.close')}">&times;</button>
+            </span>
+        </div>
+        <div class="page-graph-info-body">
+            <div class="page-graph-info-details"></div>
+            <div class="page-graph-info-connections">
+                <strong class="page-graph-info-connected-label"><f:translate key="LLL:EXT:rt_page_graph/Resources/Private/Language/locallang.xlf:panel.connected" /></strong>
+                <ul class="page-graph-info-connections-list"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-graph-stats"></div>
+</div>
+</html>

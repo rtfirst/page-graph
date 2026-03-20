@@ -1,0 +1,305 @@
+.page-graph-widget {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page-graph-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-bottom: 1px solid #dee2e6;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.page-graph-reset-view {
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 8px;
+    flex-shrink: 0;
+    order: 1;
+}
+
+.page-graph-search {
+    flex: 1;
+    min-width: 80px;
+    max-width: 280px;
+    order: 2;
+}
+
+.page-graph-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    flex-shrink: 0;
+    order: 3;
+}
+
+.page-graph-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.page-graph-fullscreen {
+    font-size: 14px;
+    line-height: 1;
+    padding: 2px 8px;
+}
+
+/* Fullscreen mode */
+.page-graph-widget.is-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    border-radius: 0;
+    background: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .page-graph-widget.is-fullscreen {
+    background: #1e1e1e;
+}
+
+.page-graph-container {
+    flex: 1;
+    background: #f8f9fa;
+    min-height: 300px;
+}
+
+.page-graph-container canvas {
+    display: block;
+}
+
+.page-graph-info-panel {
+    position: absolute;
+    right: 12px;
+    top: 56px;
+    width: 260px;
+    max-height: calc(100% - 80px);
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+    font-size: 13px;
+}
+
+.page-graph-info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 600;
+}
+
+.page-graph-info-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.page-graph-info-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.page-graph-info-edit {
+    text-decoration: none;
+    font-size: 16px;
+    color: #6c4db0;
+}
+
+.page-graph-info-edit:hover {
+    color: #7c5cbf;
+}
+
+.page-graph-info-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    color: #666;
+}
+
+.page-graph-info-close:hover {
+    color: #333;
+}
+
+.page-graph-info-body {
+    padding: 10px 12px;
+}
+
+.page-graph-info-details {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.page-graph-info-connections-list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+}
+
+.page-graph-info-connections-list li {
+    padding: 2px 0;
+}
+
+.page-graph-info-connections-list a {
+    color: #6c4db0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.page-graph-info-connections-list a:hover {
+    text-decoration: underline;
+}
+
+.page-graph-stats {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 11px;
+    color: #999;
+    pointer-events: none;
+}
+
+/* Dark mode - TYPO3 13+ data-bs-theme */
+[data-bs-theme="dark"] .page-graph-toolbar {
+    background: #2b2b2b;
+    border-bottom-color: #3e3e3e;
+    color: #dcddde;
+}
+
+[data-bs-theme="dark"] .page-graph-container {
+    background: #1e1e1e;
+}
+
+[data-bs-theme="dark"] .page-graph-info-panel {
+    background: #2b2b2b;
+    border-color: #3e3e3e;
+    color: #dcddde;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+[data-bs-theme="dark"] .page-graph-info-header {
+    border-bottom-color: #3e3e3e;
+}
+
+[data-bs-theme="dark"] .page-graph-info-edit {
+    color: #a88bfa;
+}
+
+[data-bs-theme="dark"] .page-graph-info-edit:hover {
+    color: #c4adff;
+}
+
+[data-bs-theme="dark"] .page-graph-info-close {
+    color: #999;
+}
+
+[data-bs-theme="dark"] .page-graph-info-close:hover {
+    color: #dcddde;
+}
+
+[data-bs-theme="dark"] .page-graph-info-connections-list a {
+    color: #a88bfa;
+}
+
+[data-bs-theme="dark"] .page-graph-stats {
+    color: #666;
+}
+
+/* Dark mode - OS preference fallback (TYPO3 12) */
+@media (prefers-color-scheme: dark) {
+    .page-graph-toolbar {
+        background: #2b2b2b;
+        border-bottom-color: #3e3e3e;
+        color: #dcddde;
+    }
+
+    .page-graph-container {
+        background: #1e1e1e;
+    }
+
+    .page-graph-info-panel {
+        background: #2b2b2b;
+        border-color: #3e3e3e;
+        color: #dcddde;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .page-graph-info-header {
+        border-bottom-color: #3e3e3e;
+    }
+
+    .page-graph-info-edit {
+        color: #a88bfa;
+    }
+
+    .page-graph-info-close {
+        color: #999;
+    }
+
+    .page-graph-info-connections-list a {
+        color: #a88bfa;
+    }
+
+    .page-graph-stats {
+        color: #666;
+    }
+
+    /* Reset when explicitly light in TYPO3 13+ */
+    [data-bs-theme="light"] .page-graph-toolbar {
+        background: #ffffff;
+        border-bottom-color: #dee2e6;
+        color: inherit;
+    }
+
+    [data-bs-theme="light"] .page-graph-container {
+        background: #f8f9fa;
+    }
+
+    [data-bs-theme="light"] .page-graph-info-panel {
+        background: #ffffff;
+        border-color: #dee2e6;
+        color: inherit;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    [data-bs-theme="light"] .page-graph-info-header {
+        border-bottom-color: #dee2e6;
+    }
+
+    [data-bs-theme="light"] .page-graph-info-edit {
+        color: #6c4db0;
+    }
+
+    [data-bs-theme="light"] .page-graph-info-close {
+        color: #666;
+    }
+
+    [data-bs-theme="light"] .page-graph-info-connections-list a {
+        color: #6c4db0;
+    }
+
+    [data-bs-theme="light"] .page-graph-stats {
+        color: #999;
+    }
+}

@@ -1,0 +1,6 @@
+.Build/
+.php-cs-fixer.cache
+composer.lock
+vendor/
+node_modules/
+Documentation-GENERATED-temp/

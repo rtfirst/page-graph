@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://www.phpdocumentor.org/guides/namespace"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdocumentor.org/guides/namespace vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd">
+    <project title="Page Graph Widget"
+             release="1.0.0"
+             copyright="since 2026 by Roland Tfirst">
+        <links>
+            <link url="https://github.com/rtfirst/page-graph" title="Source on GitHub"/>
+            <link url="https://github.com/rtfirst/page-graph/issues" title="Report Issues"/>
+        </links>
+    </project>
+    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" />
+</guides>
