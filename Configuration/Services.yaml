@@ -11,7 +11,7 @@ services:
     class: RTfirst\PageGraph\Widgets\PageGraphWidget
     arguments:
       $options:
-        includeContent: false
+        includeContent: true
         refreshAvailable: true
     tags:
       - name: dashboard.widget
