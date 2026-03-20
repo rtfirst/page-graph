@@ -6,7 +6,7 @@
 [![CI](https://github.com/rtfirst/page-graph/actions/workflows/ci.yaml/badge.svg)](https://github.com/rtfirst/page-graph/actions/workflows/ci.yaml)
 [![Latest Stable Version](https://img.shields.io/packagist/v/rtfirst/page-graph)](https://packagist.org/packages/rtfirst/page-graph)
 [![Total Downloads](https://img.shields.io/packagist/dt/rtfirst/page-graph)](https://packagist.org/packages/rtfirst/page-graph)
-[![License](https://img.shields.io/packagist/l/rtfirst/page-graph)](https://packagist.org/packages/rtfirst/page-graph)
+[![License](https://img.shields.io/packagist/l/rtfirst/page-graph)](https://github.com/rtfirst/page-graph/blob/main/LICENSE)
 
 A TYPO3 dashboard widget that visualizes the page tree and content elements as an interactive force-directed graph.
 
