@@ -37,7 +37,7 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "rt_page_graph"
+            "extension-key": "page_graph"
         }
     },
     "require-dev": {

@@ -61,8 +61,8 @@ class PageGraphWidget implements WidgetInterface, RequestAwareWidgetInterface, E
     public function getJsFiles(): array
     {
         return [
-            'EXT:rt_page_graph/Resources/Public/JavaScript/Vendor/force-graph.min.js',
-            'EXT:rt_page_graph/Resources/Public/JavaScript/PageGraphWidget.js',
+            'EXT:page_graph/Resources/Public/JavaScript/Vendor/force-graph.min.js',
+            'EXT:page_graph/Resources/Public/JavaScript/PageGraphWidget.js',
         ];
     }
 
@@ -72,7 +72,7 @@ class PageGraphWidget implements WidgetInterface, RequestAwareWidgetInterface, E
     public function getCssFiles(): array
     {
         return [
-            'EXT:rt_page_graph/Resources/Public/Css/PageGraphWidget.css',
+            'EXT:page_graph/Resources/Public/Css/PageGraphWidget.css',
         ];
     }
 
