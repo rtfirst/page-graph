@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   php-cs-fixer:
     name: PHP-CS-Fixer
@@ -62,7 +65,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require typo3/cms-core:${{ matrix.typo3-version }} typo3/cms-backend:${{ matrix.typo3-version }} typo3/cms-dashboard:${{ matrix.typo3-version }} --no-progress --no-interaction
+          composer config allow-plugins.typo3/class-alias-loader true
+          composer config allow-plugins.typo3/cms-composer-installers true
+          composer require --no-update typo3/cms-core:${{ matrix.typo3-version }} typo3/cms-backend:${{ matrix.typo3-version }} typo3/cms-dashboard:${{ matrix.typo3-version }}
           composer install --no-progress --no-interaction
 
       - name: Run PHPStan

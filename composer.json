@@ -29,9 +29,20 @@
             "RTfirst\\PageGraph\\": "Classes/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
+    },
     "extra": {
         "typo3/cms": {
             "extension-key": "rt_page_graph"
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10 || ^2.0",
+        "saschaegerer/phpstan-typo3": "^1.10 || ^2.0",
+        "friendsofphp/php-cs-fixer": "^3.0"
     }
 }
