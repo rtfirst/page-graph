@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Page Graph Widget',
     'description' => 'Dashboard widget showing the TYPO3 page tree and content elements as an interactive force-directed graph visualization.',
