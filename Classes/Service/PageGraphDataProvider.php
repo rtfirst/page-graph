@@ -9,6 +9,7 @@ use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 
 class PageGraphDataProvider
@@ -147,7 +148,11 @@ class PageGraphDataProvider
             ->removeAll()
             ->add(new DeletedRestriction());
 
-        $permissionClause = $GLOBALS['BE_USER']->getPagePermsClause(Permission::PAGE_SHOW);
+        $backendUser = $GLOBALS['BE_USER'] ?? null;
+        if (!$backendUser instanceof BackendUserAuthentication) {
+            return [];
+        }
+        $permissionClause = $backendUser->getPagePermsClause(Permission::PAGE_SHOW);
 
         return $queryBuilder
             ->select('uid', 'pid', 'title', 'doktype', 'hidden', 'is_siteroot')
@@ -208,7 +213,7 @@ class PageGraphDataProvider
             ->from('sys_refindex')
             ->where(
                 $queryBuilder->expr()->eq('ref_table', $queryBuilder->createNamedParameter('pages')),
-                $queryBuilder->expr()->eq('softref_key', $queryBuilder->createNamedParameter('typolink')),
+                $queryBuilder->expr()->in('softref_key', $queryBuilder->createNamedParameter(['typolink', 'typolink_tag'], Connection::PARAM_STR_ARRAY)),
                 $queryBuilder->expr()->eq('workspace', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
                 $queryBuilder->expr()->in('ref_uid', $queryBuilder->createNamedParameter($pageUids, Connection::PARAM_INT_ARRAY)),
             )
@@ -375,20 +380,8 @@ class PageGraphDataProvider
 
         $links = [];
         $seen = [];
-        foreach ($siblingGroups as $parentUid => $children) {
-            // Parent page links to each child via navigation menu
-            foreach ($children as $childUid) {
-                $key = $parentUid . '->' . $childUid;
-                if (!isset($seen[$key])) {
-                    $seen[$key] = true;
-                    $links[] = [
-                        'source' => 'p-' . $parentUid,
-                        'target' => 'p-' . $childUid,
-                        'type' => 'navigation',
-                    ];
-                }
-            }
-            // Siblings link to each other (same menu level)
+        foreach ($siblingGroups as $children) {
+            // Siblings link to each other (same navigation menu level)
             for ($i = 0, $count = count($children); $i < $count; $i++) {
                 for ($j = $i + 1; $j < $count; $j++) {
                     $a = min($children[$i], $children[$j]);

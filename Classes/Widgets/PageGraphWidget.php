@@ -16,7 +16,7 @@ use TYPO3\CMS\Dashboard\Widgets\WidgetInterface;
 
 class PageGraphWidget implements WidgetInterface, RequestAwareWidgetInterface, EventDataInterface, AdditionalJavaScriptInterface, AdditionalCssInterface
 {
-    private ServerRequestInterface $request;
+    private ?ServerRequestInterface $request = null;
 
     /**
      * @param array<string, mixed> $options
@@ -35,6 +35,9 @@ class PageGraphWidget implements WidgetInterface, RequestAwareWidgetInterface, E
 
     public function renderWidgetContent(): string
     {
+        if ($this->request === null) {
+            return '';
+        }
         $view = $this->backendViewFactory->create($this->request, ['rtfirst/page-graph']);
         $view->assignMultiple([
             'configuration' => $this->configuration,
@@ -47,10 +50,14 @@ class PageGraphWidget implements WidgetInterface, RequestAwareWidgetInterface, E
      */
     public function getEventData(): array
     {
+        if ($this->request === null) {
+            return [];
+        }
+        $includeContent = (bool) ($this->options['includeContent'] ?? true);
         return [
             'graphData' => $this->dataProvider->getGraphData(
                 $this->request,
-                true,
+                $includeContent,
             ),
         ];
     }

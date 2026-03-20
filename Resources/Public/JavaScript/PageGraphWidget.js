@@ -138,6 +138,7 @@
         var toggleContent = widget.querySelector('.page-graph-toggle-content');
         var toggleReferences = widget.querySelector('.page-graph-toggle-references');
         var infoPanel = widget.querySelector('.page-graph-info-panel');
+        if (!searchInput || !toggleContent || !toggleReferences || !infoPanel) return;
         var infoTitle = widget.querySelector('.page-graph-info-title');
         var infoEdit = widget.querySelector('.page-graph-info-edit');
         var infoClose = widget.querySelector('.page-graph-info-close');
