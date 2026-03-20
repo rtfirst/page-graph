@@ -1,4 +1,12 @@
-# Page Graph Widget for TYPO3
+# TYPO3 Extension: rt_page_graph
+
+[![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
+[![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
+[![TYPO3 14](https://img.shields.io/badge/TYPO3-14-orange.svg)](https://get.typo3.org/version/14)
+[![CI](https://github.com/rtfirst/page-graph/actions/workflows/ci.yaml/badge.svg)](https://github.com/rtfirst/page-graph/actions/workflows/ci.yaml)
+[![Latest Stable Version](https://poser.pugx.org/rtfirst/page-graph/v/stable)](https://packagist.org/packages/rtfirst/page-graph)
+[![Total Downloads](https://poser.pugx.org/rtfirst/page-graph/downloads)](https://packagist.org/packages/rtfirst/page-graph)
+[![License](https://poser.pugx.org/rtfirst/page-graph/license)](https://packagist.org/packages/rtfirst/page-graph)
 
 A TYPO3 dashboard widget that visualizes the page tree and content elements as an interactive force-directed graph.
 
@@ -6,11 +14,14 @@ A TYPO3 dashboard widget that visualizes the page tree and content elements as a
 
 - Interactive force-directed graph of the TYPO3 page tree
 - Content element nodes with toggle visibility
+- Internal links view (typolinks + navigation structure)
 - Hover highlighting with connected node emphasis
 - Click nodes to view details and edit records in the TYPO3 backend
 - Real-time search filtering
-- Light and dark mode support
-- Supports TYPO3 12.4, 13.x, and 14.x
+- Fullscreen mode
+- Light and dark mode support (TYPO3 12/13/14)
+- Depth-based branch coloring
+- German and English translations
 
 ## Installation
 
@@ -40,6 +51,8 @@ vendor/bin/typo3 cache:flush
 - **Click** a node to open the info panel with details and an edit link
 - **Search** to filter and highlight matching nodes
 - **Toggle** "Content Elements" to show/hide content element nodes
+- **Toggle** "Internal Links" to visualize typolinks and navigation links
+- **Fullscreen** for a larger view
 - **Scroll** to zoom, **drag** to pan
 
 ## Requirements
