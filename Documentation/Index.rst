@@ -5,7 +5,7 @@ Page Graph Widget
 ==================
 
 :Extension key:
-   rt_page_graph
+   page_graph
 
 :Package name:
    rtfirst/page-graph

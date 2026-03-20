@@ -1,4 +1,4 @@
-# TYPO3 Extension: rt_page_graph
+# TYPO3 Extension: page_graph
 
 [![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
 [![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
