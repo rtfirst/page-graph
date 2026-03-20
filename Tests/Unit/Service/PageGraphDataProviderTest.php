@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Database\Query\Expression\ExpressionBuilder;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\DefaultRestrictionContainer;
 use TYPO3\CMS\Core\Http\Uri;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class PageGraphDataProviderTest extends TestCase
 {
@@ -30,6 +31,18 @@ final class PageGraphDataProviderTest extends TestCase
         $this->uriBuilderMock = $this->createMock(UriBuilder::class);
         $this->uriBuilderMock->method('buildUriFromRoute')->willReturn(new Uri('/typo3/edit'));
         $this->requestMock = $this->createMock(ServerRequestInterface::class);
+
+        // TYPO3 14: DeletedRestriction calls GeneralUtility::makeInstance(TcaSchemaFactory::class)
+        // which fails without DI container. Pre-register a stub instance.
+        $tcaSchemaFactoryClass = 'TYPO3\\CMS\\Core\\Schema\\TcaSchemaFactory';
+        if (class_exists($tcaSchemaFactoryClass)) {
+            $reflection = new \ReflectionClass($tcaSchemaFactoryClass);
+            $stub = $reflection->newInstanceWithoutConstructor();
+            // Register enough instances for all DeletedRestriction creations per test
+            for ($i = 0; $i < 10; $i++) {
+                GeneralUtility::addInstance($tcaSchemaFactoryClass, $stub);
+            }
+        }
     }
 
     private function createSubject(): PageGraphDataProvider
@@ -86,6 +99,7 @@ final class PageGraphDataProviderTest extends TestCase
     protected function tearDown(): void
     {
         unset($GLOBALS['BE_USER']);
+        GeneralUtility::purgeInstances();
     }
 
     #[Test]
