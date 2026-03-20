@@ -59,6 +59,30 @@ The ``getGraphData()`` method returns:
         "meta": {"totalPages": 25, "totalContent": 87}
     }
 
+Unit Tests
+==========
+
+The extension ships with PHPUnit unit tests located in ``Tests/Unit/``.
+
+Run tests locally
+-----------------
+
+..  code-block:: bash
+    :caption: Run from the DDEV project root
+
+    ddev exec "cd packages/page_graph && ../../vendor/bin/phpunit \
+        --bootstrap ../../vendor/autoload.php Tests/Unit/"
+
+Test structure
+--------------
+
+-  ``Tests/Unit/Service/PageGraphDataProviderTest.php`` — Tests the data
+   provider including page/content node generation, depth calculation,
+   doktype and CType group mapping, tree links, and navigation links.
+-  ``Tests/Unit/Widgets/PageGraphWidgetTest.php`` — Tests the widget's
+   JS/CSS file paths, options handling, request guards, and event data
+   delegation.
+
 Cross-Version Compatibility
 ===========================
 

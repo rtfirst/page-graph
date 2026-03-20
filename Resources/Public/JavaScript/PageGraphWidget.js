@@ -375,6 +375,8 @@
             .onNodeHover(function (node) {
                 hoveredNode = node || null;
                 container.style.cursor = node ? 'pointer' : 'default';
+                // Force canvas repaint after simulation has cooled down
+                graph.nodeColor(graph.nodeColor());
             })
             .onNodeClick(function (node) {
                 if (!node) return;

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.2] - 2026-03-20
+
+### Added
+
+- Unit tests for `PageGraphDataProvider` (10 test cases covering graph data, doktypes, CTypes, navigation links)
+- Unit tests for `PageGraphWidget` (7 test cases covering JS/CSS paths, options, request guards, event data)
+- PHPUnit configuration (`phpunit.xml`)
+- Unit Tests job in CI pipeline (PHP 8.1–8.4 × TYPO3 12.4/13.4/14.0 matrix)
+- `autoload-dev` and `phpunit` in `composer.json`
+- Developer documentation for running tests
+
+### Fixed
+
+- Hover highlighting stopped working after simulation cooled down (~7 seconds)
+- Documentation rendering failed on docs.typo3.org due to invalid `guides.xml` (wrong namespace and unsupported `<links>` element)
+
 ## [1.0.1] - 2026-03-20
 
 ### Fixed

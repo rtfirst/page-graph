@@ -2,5 +2,8 @@
 /.gitattributes export-ignore
 /.gitignore     export-ignore
 /.php-cs-fixer.dist.php export-ignore
+/.phpunit.cache export-ignore
 /phpstan.neon   export-ignore
+/phpunit.xml    export-ignore
+/Tests          export-ignore
 /Documentation-GENERATED-temp export-ignore
