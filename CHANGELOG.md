@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.4] - 2026-03-21
+
+### Added
+
+- Vendor update script (`Build/update-vendor.sh`) for reproducible force-graph updates
+- CI vendor-version-check job to detect outdated force-graph versions
+- Persistent widget state (layout mode, toggles) via localStorage
+- Layout modes, references toggle, and persistent settings documented in Usage
+
+### Changed
+
+- Reduced node sizes for cleaner graph appearance
+- Tuned force parameters (charge, link distance) for less node overlap
+- Hover label now drawn on top of all nodes via `onRenderFramePost`
+
 ## [1.0.3] - 2026-03-20
 
 ### Fixed
