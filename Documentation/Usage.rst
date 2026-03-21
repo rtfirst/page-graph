@@ -45,12 +45,36 @@ Toggle Content Elements
 Use the "Content Elements" checkbox to show or hide content element
 nodes and their links.
 
+Layout Modes
+------------
+
+Use the layout dropdown to switch between different graph layouts:
+
+-  **Force** (default) — physics-based layout
+-  **Top-Down / Bottom-Up / Left-Right / Right-Left** — hierarchical tree layouts
+-  **Radial** — tree arranged in concentric circles
+
+Toggle References
+-----------------
+
+Use the "References" checkbox to show cross-page reference and
+navigation links instead of content elements.
+
 Navigation
 ----------
 
 -  **Scroll** to zoom in and out
 -  **Drag** the background to pan
 -  **Drag** a node to reposition it
+
+Persistent Settings
+===================
+
+The widget remembers your settings (layout mode, content/reference
+toggles) in the browser's ``localStorage``. When you return to the
+dashboard, the widget restores your last configuration automatically.
+Settings are stored per browser origin, so multiple TYPO3 installations
+on different domains do not interfere with each other.
 
 Dark Mode
 =========

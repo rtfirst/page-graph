@@ -15,6 +15,12 @@
         <input type="text" class="page-graph-search form-control form-control-sm"
                placeholder="{f:translate(key: 'LLL:EXT:page_graph/Resources/Private/Language/locallang.xlf:toolbar.search')}" />
         <div class="page-graph-toolbar-right">
+            <select class="page-graph-layout-select form-select form-select-sm">
+                <option value="">{f:translate(key: 'LLL:EXT:page_graph/Resources/Private/Language/locallang.xlf:layout.force')}</option>
+                <option value="td">{f:translate(key: 'LLL:EXT:page_graph/Resources/Private/Language/locallang.xlf:layout.treeDown')}</option>
+                <option value="lr">{f:translate(key: 'LLL:EXT:page_graph/Resources/Private/Language/locallang.xlf:layout.treeRight')}</option>
+                <option value="radialout">{f:translate(key: 'LLL:EXT:page_graph/Resources/Private/Language/locallang.xlf:layout.radial')}</option>
+            </select>
             <label class="page-graph-toggle">
                 <input type="checkbox" class="page-graph-toggle-content" />
                 <span><f:translate key="LLL:EXT:page_graph/Resources/Private/Language/locallang.xlf:toolbar.contentElements" /></span>

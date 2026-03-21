@@ -135,6 +135,7 @@
         if (!widget) return;
 
         var searchInput = widget.querySelector('.page-graph-search');
+        var layoutSelect = widget.querySelector('.page-graph-layout-select');
         var toggleContent = widget.querySelector('.page-graph-toggle-content');
         var toggleReferences = widget.querySelector('.page-graph-toggle-references');
         var infoPanel = widget.querySelector('.page-graph-info-panel');
@@ -158,6 +159,32 @@
             contentElements: widget.dataset.labelContentElements || 'Content Elements',
             connected: widget.dataset.labelConnected || 'Connected:'
         };
+
+        // Persist widget state in localStorage
+        var STORAGE_KEY = 'pageGraphWidget';
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    layout: layoutSelect ? layoutSelect.value : '',
+                    showContent: toggleContent.checked,
+                    showReferences: toggleReferences.checked
+                }));
+            } catch (e) { /* quota exceeded or private mode */ }
+        }
+        function loadState() {
+            try {
+                var raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? JSON.parse(raw) : null;
+            } catch (e) { return null; }
+        }
+
+        // Restore saved state into UI controls
+        var saved = loadState();
+        if (saved) {
+            if (layoutSelect && saved.layout !== undefined) layoutSelect.value = saved.layout;
+            toggleContent.checked = !!saved.showContent;
+            toggleReferences.checked = !!saved.showReferences;
+        }
 
         // Deep-copy original data so force-graph mutations don't corrupt our source
         var rawNodes = JSON.parse(JSON.stringify(graphData.nodes));
@@ -279,7 +306,7 @@
         // Stronger repulsion so nodes don't overlap
         var chargeForce = graph.d3Force('charge');
         if (chargeForce && chargeForce.strength) {
-            chargeForce.strength(Math.min(-150, -300 - nodeCount * 3));
+            chargeForce.strength(Math.min(-180, -280 - nodeCount * 3));
         }
         // Longer links to spread the tree out
         var linkForce = graph.d3Force('link');
@@ -287,8 +314,25 @@
             linkForce.distance(function (link) {
                 // Content links shorter, tree links longer
                 var t = typeof link.type === 'string' ? link.type : 'tree';
-                return t === 'content' ? 40 : Math.max(60, 80 + nodeCount);
+                return t === 'content' ? 45 : Math.max(50, 60 + nodeCount * 0.5);
             });
+        }
+
+        // Apply saved layout mode on init
+        if (saved && saved.layout && layoutSelect) {
+            var initMode = saved.layout || null;
+            if (initMode) {
+                graph.dagMode(initMode);
+                if (initMode === 'radialout') {
+                    graph.dagLevelDistance(40);
+                } else {
+                    graph.dagLevelDistance(55);
+                }
+                var initCharge = graph.d3Force('charge');
+                if (initCharge && initCharge.strength) {
+                    initCharge.strength(-90);
+                }
+            }
         }
 
         graph
@@ -296,7 +340,7 @@
                 var colors = getColors();
                 var nodeColor = getNodeColor(node);
                 var links = graph.graphData().links;
-                var size = 4 + Math.sqrt(getLinkCount(node.id, links)) * 2;
+                var size = 2.5 + Math.sqrt(getLinkCount(node.id, links)) * 1.2;
                 var isHovered = hoveredNode && (hoveredNode.id === node.id || isNeighbor(hoveredNode.id, node.id));
                 var isSelected = selectedNode && selectedNode.id === node.id;
                 var isSearchMatch = searchTerm && matchesSearch(node);
@@ -309,7 +353,7 @@
                 // Siteroot gets distinct color and larger size
                 if (node.isSiteroot) {
                     nodeColor = colors.siteroot;
-                    size = size + 4;
+                    size = size + 2.5;
                 }
 
                 // Dimmed nodes: desaturated, muted fill at full opacity (no bleed-through)
@@ -351,7 +395,9 @@
                 }
 
                 // Label - hide for dimmed nodes, show for active/zoomed
-                var showLabel = !isDimmed && (globalScale > 1.2 || isHovered || isSelected || isSearchMatch);
+                // Hover label is drawn in onRenderFramePost so it appears on top of all nodes
+                var isDirectHover = hoveredNode && hoveredNode.id === node.id;
+                var showLabel = !isDirectHover && !isDimmed && (globalScale > 1.2 || isHovered || isSelected || isSearchMatch);
                 if (showLabel) {
                     var label = node.label;
                     var fontSize = Math.max(10 / globalScale, 3);
@@ -366,7 +412,7 @@
             })
             .nodePointerAreaPaint(function (node, color, ctx) {
                 var links = graph.graphData().links;
-                var size = 4 + Math.sqrt(getLinkCount(node.id, links)) * 2;
+                var size = 2.5 + Math.sqrt(getLinkCount(node.id, links)) * 1.2;
                 ctx.beginPath();
                 ctx.arc(node.x, node.y, size + 2, 0, 2 * Math.PI);
                 ctx.fillStyle = color;
@@ -389,6 +435,31 @@
                 hoveredNode = null;
                 hideInfoPanel();
                 graph.nodeColor(graph.nodeColor());
+            })
+            .onRenderFramePost(function (ctx, globalScale) {
+                // Draw hover label last so it appears on top of all nodes
+                if (!hoveredNode || hoveredNode.x === undefined) return;
+                var node = hoveredNode;
+                var links = graph.graphData().links;
+                var size = 2.5 + Math.sqrt(getLinkCount(node.id, links)) * 1.2;
+                if (node.isSiteroot) size += 2.5;
+                var dark = isDarkMode();
+                var label = node.label;
+                var fontSize = Math.max(12 / globalScale, 4);
+                ctx.save();
+                ctx.font = 'bold ' + fontSize + 'px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                var labelY = node.y + size + 2;
+                var textWidth = ctx.measureText(label).width;
+                var pad = fontSize * 0.4;
+                ctx.fillStyle = dark ? 'rgba(30,30,30,0.92)' : 'rgba(255,255,255,0.95)';
+                ctx.beginPath();
+                ctx.roundRect(node.x - textWidth / 2 - pad, labelY - pad * 0.5, textWidth + pad * 2, fontSize + pad * 1.5, pad);
+                ctx.fill();
+                ctx.fillStyle = dark ? '#ffffff' : '#000000';
+                ctx.fillText(label, node.x, labelY);
+                ctx.restore();
             });
 
         function showInfoPanel(node) {
@@ -476,6 +547,7 @@
                 showReferences = false;
                 toggleReferences.checked = false;
             }
+            saveState();
             refreshGraph();
         });
 
@@ -485,8 +557,37 @@
                 showContent = false;
                 toggleContent.checked = false;
             }
+            saveState();
             refreshGraph();
         });
+
+        // Layout mode selector
+        if (layoutSelect) {
+            layoutSelect.addEventListener('change', function () {
+                var mode = this.value || null;
+                graph.dagMode(mode);
+                // Adjust level distance based on mode
+                if (mode === 'radialout') {
+                    graph.dagLevelDistance(40);
+                } else if (mode) {
+                    graph.dagLevelDistance(55);
+                }
+                // Adjust forces for DAG vs force layout
+                var chargeF = graph.d3Force('charge');
+                if (chargeF && chargeF.strength) {
+                    if (mode) {
+                        chargeF.strength(-90);
+                    } else {
+                        chargeF.strength(Math.min(-180, -280 - nodeCount * 3));
+                    }
+                }
+                saveState();
+                graph.d3ReheatSimulation();
+                setTimeout(function () {
+                    graph.zoomToFit(400, 40);
+                }, 600);
+            });
+        }
 
         // Fullscreen toggle
         var fullscreenBtn = widget.querySelector('.page-graph-fullscreen');

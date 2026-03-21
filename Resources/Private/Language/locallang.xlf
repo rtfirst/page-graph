@@ -56,6 +56,18 @@
             <trans-unit id="stats.contentElements" resname="stats.contentElements">
                 <source>Content Elements</source>
             </trans-unit>
+            <trans-unit id="layout.force" resname="layout.force">
+                <source>Force</source>
+            </trans-unit>
+            <trans-unit id="layout.treeDown" resname="layout.treeDown">
+                <source>Tree ↓</source>
+            </trans-unit>
+            <trans-unit id="layout.treeRight" resname="layout.treeRight">
+                <source>Tree →</source>
+            </trans-unit>
+            <trans-unit id="layout.radial" resname="layout.radial">
+                <source>Radial</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

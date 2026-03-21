@@ -83,6 +83,33 @@ Test structure
    JS/CSS file paths, options handling, request guards, and event data
    delegation.
 
+Updating Vendor Libraries
+=========================
+
+The bundled ``force-graph`` library can be updated with the provided
+shell script. No npm or Node.js installation is required for end users
+— the minified file is always committed to Git.
+
+..  code-block:: bash
+    :caption: Update to the latest version
+
+    cd packages/page_graph
+    bash Build/update-vendor.sh
+
+..  code-block:: bash
+    :caption: Update to a specific version
+
+    bash Build/update-vendor.sh 1.52.0
+
+The script:
+
+-  Fetches the minified build from `unpkg.com <https://unpkg.com/>`__
+-  Prepends a version comment to the first line
+-  Updates the version reference in ``Resources/Public/JavaScript/Vendor/LICENSE.md``
+
+After updating, verify the widget still works in the TYPO3 dashboard
+and commit the changed files.
+
 Cross-Version Compatibility
 ===========================
 

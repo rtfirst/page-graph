@@ -74,6 +74,22 @@
                 <source>Content Elements</source>
                 <target>Inhaltselemente</target>
             </trans-unit>
+            <trans-unit id="layout.force" resname="layout.force">
+                <source>Force</source>
+                <target>Frei</target>
+            </trans-unit>
+            <trans-unit id="layout.treeDown" resname="layout.treeDown">
+                <source>Tree ↓</source>
+                <target>Baum ↓</target>
+            </trans-unit>
+            <trans-unit id="layout.treeRight" resname="layout.treeRight">
+                <source>Tree →</source>
+                <target>Baum →</target>
+            </trans-unit>
+            <trans-unit id="layout.radial" resname="layout.radial">
+                <source>Radial</source>
+                <target>Radial</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
