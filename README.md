@@ -63,6 +63,10 @@ vendor/bin/typo3 cache:flush
 - PHP 8.1 - 8.4
 - TYPO3 Dashboard extension
 
+## Author
+
+Roland Tfirst — [roland@tfirst.de](mailto:roland@tfirst.de)
+
 ## License
 
 GPL-2.0-or-later
