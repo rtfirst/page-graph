@@ -175,6 +175,8 @@ class PageGraphDataProvider
      */
     private function fetchContentElements(array $pageUids): array
     {
+        // $pageUids are already filtered by backend user permissions in fetchPages(),
+        // so content elements are implicitly restricted to accessible pages.
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tt_content');
         $queryBuilder->getRestrictions()
             ->removeAll()
@@ -268,6 +270,11 @@ class PageGraphDataProvider
     private function resolveSourcePages(string $tableName, array $recUids): array
     {
         if ($recUids === []) {
+            return [];
+        }
+
+        // Only allow known safe tables to prevent arbitrary table access via sys_refindex
+        if ($tableName !== 'tt_content' && !str_starts_with($tableName, 'tx_')) {
             return [];
         }
 
