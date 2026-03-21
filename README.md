@@ -10,6 +10,8 @@
 
 A TYPO3 dashboard widget that visualizes the page tree and content elements as an interactive force-directed graph.
 
+![Page Graph Widget](Documentation/Images/page-graph.webp)
+
 ## Features
 
 - Interactive force-directed graph of the TYPO3 page tree

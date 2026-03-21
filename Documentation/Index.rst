@@ -32,6 +32,12 @@ Page Graph Widget
 A TYPO3 dashboard widget that visualizes the page tree and content elements
 as an interactive force-directed graph.
 
+..  figure:: Images/page-graph.webp
+    :alt: Page Graph Widget showing the TYPO3 page tree as a force-directed graph
+    :class: with-shadow
+
+    The Page Graph widget in the TYPO3 dashboard.
+
 ----
 
 ..  card-grid::
